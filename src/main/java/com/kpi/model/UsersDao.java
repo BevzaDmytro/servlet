@@ -10,7 +10,7 @@ public class UsersDao implements Dao {
     public User getById(int id){
         Connector connector = Connector.getInstance();
         String query = "Select u.name, u.email, u.password, u.is_admin, c.card_number, c.account_id, a.balance from users as u join cards as c on c.card_owner_id = u.id join accounts as a on a.id = c.account_id where u.id = " + id;
-
+//TODO: допилити додавання карток і аккаунтів в юзера
 
         try {
             ResultSet result = connector.executeSQL(query);
