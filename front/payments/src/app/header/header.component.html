@@ -1,6 +1,28 @@
 <div id="header">
 
+  <div class="" *ngIf="!isUserLoggedIn()">
+    <form action="localost:8080/">
+      <label>
+        Email:
+        <input type="text" name="login" [(ngModel)]="email">
+      </label>
 
+      <label>
+        Password
+        <input name="password" [(ngModel)]="password">
+      </label>
+
+      <button type="submit" (click)="logIn()">
+        Log In
+      </button>
+    </form>
+  </div>
+
+<div class="online" *ngIf="isUserLoggedIn()">
+  <div class="inform">
+    <p class="user_name">{{user.name}}</p>
+    <a class="logout" href="#" (click)="logout()">Log out</a>
+  </div>
 <div class="buttons">
   <div class="btn">
     <a routerLink="/main" class="c">Main</a>
@@ -15,6 +37,6 @@
     <a routerLink="/block" class="c">Block</a>
   </div>
 </div>
-  <p class="user_name">{{user.name}}</p>
 
+</div>
 </div>

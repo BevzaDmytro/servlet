@@ -3,6 +3,7 @@ package com.kpi.commands;
 import com.google.gson.Gson;
 import com.kpi.entities.User;
 import com.kpi.model.UsersDao;
+import com.kpi.model.UsersOnlineDao;
 import com.kpi.utils.JsonMakerUtil;
 
 import javax.servlet.ServletException;
@@ -40,15 +41,16 @@ public class LoginCommand extends BaseCommand {
 //            }
 //        }
 
-//        String email = req.getParameter("email");
-        String email = "qwerty@gmail.com";
-//        String pw = req.getParameter("password");
-        String pw = "12345";
+        String email = req.getParameter("email");
+//        String email = "qwerty@gmail.com";
+        String pw = req.getParameter("password");
+//        String pw = "12345";
 
 
         UsersDao usersDao = new UsersDao();
-//        User user = usersDao.getUserByLogin(email, pw);
-        User user = usersDao.getById(1);
+        User user = usersDao.getUserByLogin(email, pw);
+        UsersOnlineDao.insertToken(user.getId(), "1111");
+//        User user = usersDao.getById(1);
 
         resp.setHeader("Access-Control-Allow-Origin", "*");
         resp.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");
@@ -58,7 +60,7 @@ public class LoginCommand extends BaseCommand {
 
 
         PrintWriter out = resp.getWriter();
-        String jsonObject = JsonMakerUtil.createResponseJson("",user, "msg");
+        String jsonObject = JsonMakerUtil.createResponseJson("1111",user, "msg");
 
         out.print(jsonObject);
         out.flush();

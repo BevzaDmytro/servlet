@@ -40,7 +40,6 @@ public class Connector {
         try {
 //            stmt = (Statement) con.createStatement();
             stmt =  con.createStatement();
-
             return stmt.executeQuery(query);
         } catch (SQLException e) {
             e.printStackTrace();

@@ -8,4 +8,10 @@ import { FormsModule } from "@angular/forms";
 })
 export class AppComponent {
   title = 'payments';
+
+  isUserLoggedIn(){
+    let token = localStorage.getItem('auth');
+    if(token == null) return false;
+    else return true;
+  }
 }

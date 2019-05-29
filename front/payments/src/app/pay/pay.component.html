@@ -1,7 +1,6 @@
-<p>
-  pay works!
-</p>
+
 <form action="localost:8080/">
+  <div class="inputs">
   <label>From card:
   <select (change)="onChange($event.target.value)"  required>
   <!--<select >-->
@@ -21,8 +20,7 @@
     Amount:
     <input name="amount" [(ngModel)]="payment.amount">
   </label>
-
-
+    
 
   <button type="submit" (click)="submit(payment)">
     Submit
@@ -31,5 +29,6 @@
   <div *ngIf="messageExist()">
     {{message}}
   </div>
-
+  </div>
 </form>
+
