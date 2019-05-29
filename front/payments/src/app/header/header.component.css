@@ -1,0 +1,28 @@
+#header{
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  background-color: darkkhaki;
+}
+.c {
+  border: 0px solid #333; /* Рамка */
+  display: inline-block;
+  padding: 5px 15px; /* Поля */
+  text-decoration: none; /* Убираем подчёркивание */
+  color: #000; /* Цвет текста */
+}
+.c:hover {
+  box-shadow: 0 0 5px rgba(0,0,0,0.3); /* Тень */
+  background: linear-gradient(to bottom, #fcfff4, #e9e9ce); /* Градиент */
+  color: #a00;
+}
+.buttons{
+  width: 80%;
+  height: 20px;
+  display: flex;
+}
+.btn{
+  width: 25%;
+  height: 20px;
+}

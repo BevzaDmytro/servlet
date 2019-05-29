@@ -36,7 +36,7 @@ public class Connector {
 
     }
 
-    public ResultSet executeSQL(String query){
+    public ResultSet executeSQLWithReturn(String query){
         try {
 //            stmt = (Statement) con.createStatement();
             stmt =  con.createStatement();
@@ -46,6 +46,16 @@ public class Connector {
             e.printStackTrace();
         }
         return null;
+    }
+    public void executeSQL(String query){
+        try {
+//            stmt = (Statement) con.createStatement();
+            stmt =  con.createStatement();
+             stmt.execute(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
 //    public static void main(String args[]) {

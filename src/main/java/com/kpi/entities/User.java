@@ -10,12 +10,13 @@ public class User {
     private boolean isAdmin;
     private ArrayList<Card> cards;
 
-    public User(int id, String name, String email, String password, boolean isAdmin) {
+    public User(int id, String name, String email, String password, boolean isAdmin, ArrayList<Card> cards) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.isAdmin = isAdmin;
+        this.cards = cards;
     }
 
     public int getId() {

@@ -1,0 +1,35 @@
+<p>
+  pay works!
+</p>
+<form action="localost:8080/">
+  <label>From card:
+  <select (change)="onChange($event.target.value)"  required>
+  <!--<select >-->
+    <option disabled>Select card:</option>
+    <option *ngFor="let card of cards"  value={{card.cardNum}} >Card: {{card.cardNum}}; Balance: {{card.account.balance}}</option>
+  </select>
+
+  </label>
+
+
+  <label>
+    To card:
+    <input type="text" [(ngModel)]="payment.recipientCard" name="recipient">
+  </label>
+
+  <label>
+    Amount:
+    <input name="amount" [(ngModel)]="payment.amount">
+  </label>
+
+
+
+  <button type="submit" (click)="submit(payment)">
+    Submit
+  </button>
+
+  <div *ngIf="messageExist()">
+    {{message}}
+  </div>
+
+</form>
