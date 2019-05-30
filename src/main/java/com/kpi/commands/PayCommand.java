@@ -28,16 +28,10 @@ public class PayCommand extends BaseCommand {
         String cardNumOwner = req.getParameter("senderCard");
         String cardNumRecip = req.getParameter("recipient");
         String amount = req.getParameter("amount");
-        System.out.println(cardNumOwner);
-        System.out.println(cardNumRecip);
-        System.out.println(amount);
 
         PaymentsService service = new PaymentsService(cardNumOwner,cardNumRecip);
         String result =  service.pay(amount);
 
-//        UsersDao usersDao = new UsersDao();
-////        User user = usersDao.getUserByLogin(email, pw);
-//        User user = usersDao.getById(1);
 
         resp.setHeader("Access-Control-Allow-Origin", "*");
         resp.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");

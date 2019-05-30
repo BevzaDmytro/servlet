@@ -30,10 +30,8 @@ public class CardsDao {
 
     public void updateCard(Card card){
         Connector connector = Connector.getInstance();
-        String query = "";
-
+        String query = "UPDATE cards SET is_blocked = '"+String.valueOf(card.isBlocked())+"' WHERE id="+card.getId();
         connector.executeSQL(query);
-
     }
 
     public Card getCardByNumber(String cardNum1) {

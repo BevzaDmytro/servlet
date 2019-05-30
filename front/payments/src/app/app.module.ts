@@ -9,6 +9,8 @@ import {FormsModule} from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { PayComponent } from './pay/pay.component';
 import { BlockComponent } from './block/block.component';
+import { LoginComponent } from './login/login.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { BlockComponent } from './block/block.component';
     HeaderComponent,
     ContentComponent,
     PayComponent,
-    BlockComponent
+    BlockComponent,
+    LoginComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

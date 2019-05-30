@@ -24,6 +24,7 @@ public class PaymentsService {
 
         Card card2 = cardsDao.getCardByNumber(this.cardNum2);
         if(card2 == null) return "recipient card does not exist";
+        if(card1.isBlocked() || card2.isBlocked()) return "Card is blocked";
         if(card1.getAccount().getBalance() < money) return "Not enough money";
 
         card1.getAccount().setBalance(card1.getAccount().getBalance() - money);

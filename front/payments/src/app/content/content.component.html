@@ -1,6 +1,10 @@
 <h2>My Cards</h2>
 <ul class="cards">
   <li *ngFor="let card of user.cards">
-    <span class="badge">{{card.id}}</span> {{card.cardNum}}
+    <div class="card">
+      <p class="num">{{card.cardNum}}</p>
+      <p class="balance">{{card.account.balance}}</p>
+      <p *ngIf="isCardBlocked(card)" class="num">BLOCKED</p>
+    </div>
   </li>
 </ul>

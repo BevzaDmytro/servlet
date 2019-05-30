@@ -20,4 +20,7 @@ export class ContentComponent implements OnInit {
     this.getUser();
   }
 
+  isCardBlocked(card) {
+    return card.isBlocked == true;
+  }
 }

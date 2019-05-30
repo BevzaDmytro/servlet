@@ -1,3 +1,23 @@
 <p>
   block works!
 </p>
+<form action="localost:8080/">
+  <div class="inputs">
+    <label>Card:
+      <select (change)="onCardChange($event.target.value)"  required>
+        <!--<select >-->
+        <option disabled>Select card:</option>
+        <option *ngFor="let card of user.cards"  value={{card.cardNum}} >Card: {{card.cardNum}}; Balance: {{card.account.balance}}</option>
+      </select>
+
+    </label>
+
+    <button type="submit" (click)="block()">
+      Submit
+    </button>
+
+    <div *ngIf="messageExist()">
+      {{message}}
+    </div>
+  </div>
+</form>

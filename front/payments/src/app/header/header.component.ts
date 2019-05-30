@@ -10,16 +10,11 @@ import {HttpService} from "../http.service";
 export class HeaderComponent implements OnInit {
 
   user : User;
-  email = '';
-  password = '';
+
 
   constructor(private userService : HttpService) { }
 
-  isUserLoggedIn(){
-    let token = localStorage.getItem('auth');
-    if(token == null) return false;
-    else return true;
-  }
+
   getUser(): void{
     this.userService.getResponse().subscribe(response => this.user = response.user);
   }
@@ -29,13 +24,12 @@ export class HeaderComponent implements OnInit {
     console.log(this.user);
   }
 
-  logIn() {
-    console.log(this.email + this.password);
-    this.userService.login(this.email, this.password);
-  }
-
   logout() {
     this.userService.logout();
+  }
 
+  isUserAdmin() {
+    console.log(this.user.isAdmin);
+    return this.user.isAdmin == true;
   }
 }

@@ -25,7 +25,7 @@ public class UsersDao implements Dao {
             float balance =  result.getFloat("balance");
             int cardId = result.getInt("card_id");
             int accountId = result.getInt("account_id");
-            boolean isBlocked = Boolean.getBoolean(result.getString("is_blocked"));
+            boolean isBlocked = Boolean.parseBoolean(result.getString("is_blocked"));
             Card card =  new Card(cardId,cardNum,id, isBlocked, new Account(accountId,accountNum, balance));
             ArrayList<Card> cards = new ArrayList<>();
             cards.add(card);
@@ -43,7 +43,7 @@ public class UsersDao implements Dao {
 
 
 
-            return new User(id,name,email,password,Boolean.getBoolean(isAdmin), cards);
+            return new User(id,name,email,password,Boolean.parseBoolean(isAdmin), cards);
         } catch (SQLException e) {
             e.printStackTrace();
         }

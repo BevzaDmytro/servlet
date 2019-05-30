@@ -18,7 +18,6 @@ export class HttpService {
     })
   };
   private userUrl = 'http://localhost:8080/';
-  // private response: Observable<Response>;
 
   login(email: string, password: string) {
     const params = new HttpParams().set('email', email).set('password',password);
@@ -51,8 +50,12 @@ export class HttpService {
 
   logout() {
     const params = new HttpParams().set('auth', localStorage.getItem('auth'));
-    console.log("LOGOUT :" + this.userUrl+'logout');
     localStorage.clear();
-    this.http.post(this.userUrl+'logout',params).subscribe();
+    this.http.post(this.userUrl+'logout', params).subscribe();
+  }
+
+  block(cardNum : string): Observable<Response>{
+    const params = new HttpParams().set('cardToBlock', cardNum).set('auth',localStorage.getItem('auth'));
+    return this.http.post(this.userUrl+'block', params);
   }
 }
