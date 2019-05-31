@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpService} from "../http.service";
 
 @Component({
   selector: 'app-admin',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
 
-  constructor() { }
+  private cardNum:string;
+  private message:string;
 
+  constructor(private userService : HttpService) { }
+
+  // getUser(): void{
+  //   this.userService.getResponse().subscribe(response => this.user = response.user);
+  // }
   ngOnInit() {
+  }
+
+  unblock() {
+    if (this.cardNum == null) return;
+    this.userService.unblock(this.cardNum)
+      .subscribe(
+        response => {
+          this.message = response.message
+        },
+        error => console.log("ERROR")
+      );
   }
 
 }

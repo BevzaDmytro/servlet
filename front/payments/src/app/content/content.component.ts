@@ -21,6 +21,7 @@ export class ContentComponent implements OnInit {
   }
 
   isCardBlocked(card) {
+    console.log("Card: "+card.cardNum+" "+card.isBlocked)
     return card.isBlocked == true;
   }
 }

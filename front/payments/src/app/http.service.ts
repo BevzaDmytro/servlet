@@ -56,6 +56,11 @@ export class HttpService {
 
   block(cardNum : string): Observable<Response>{
     const params = new HttpParams().set('cardToBlock', cardNum).set('auth',localStorage.getItem('auth'));
-    return this.http.post(this.userUrl+'block', params);
+    return this.http.post<Response>(this.userUrl+'block', params);
+  }
+
+  unblock(cardNum : string): Observable<Response>{
+    const params = new HttpParams().set('unblockCard', cardNum).set('auth',localStorage.getItem('auth'));
+    return this.http.post<Response>(this.userUrl+'unblock', params);
   }
 }

@@ -11,4 +11,11 @@ public class CardsService {
         card.setBlocked(true);
         dao.updateCard(card);
     }
+
+    public void unblock(String cardNum) {
+        CardsDao dao = new CardsDao();
+        Card card = dao.getCardByNumber(cardNum);
+        card.setBlocked(false);
+        dao.updateCard(card);
+    }
 }

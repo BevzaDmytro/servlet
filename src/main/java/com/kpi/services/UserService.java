@@ -11,4 +11,8 @@ public class UserService {
         int userId = UsersOnlineDao.getUserId(token1);
         return usersDao.getById(userId);
     }
+
+    public boolean checkIsAdmin(User user) {
+        return user.isAdmin();
+    }
 }

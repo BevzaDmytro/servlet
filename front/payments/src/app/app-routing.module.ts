@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {ContentComponent} from "./content/content.component";
 import {PayComponent} from "./pay/pay.component";
 import {BlockComponent} from "./block/block.component";
+import {AdminComponent} from "./admin/admin.component";
 
 const routes: Routes = [
   {path : "", component: ContentComponent},
@@ -10,6 +11,7 @@ const routes: Routes = [
   {path : "pay", component: PayComponent},
   {path : "fill", component: ContentComponent},
   {path : "block", component: BlockComponent},
+  {path : "unblock", component: AdminComponent},
 ];
 
 @NgModule({

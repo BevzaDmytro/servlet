@@ -1,3 +1,19 @@
 <p>
   admin works!
 </p>
+<form action="">
+  <div class="inputs">
+    <label>
+      Card:
+      <input type="text" name="card" [(ngModel)]="cardNum">
+    </label>
+
+    <button type="submit" (click)="unblock()">
+      Submit
+    </button>
+
+    <div *ngIf="messageExist()">
+      {{message}}
+    </div>
+  </div>
+</form>

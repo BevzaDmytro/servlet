@@ -64,3 +64,4 @@ public class MainServlet extends HttpServlet {
 
     }
 }
+//TODO: доробити адмінку, нормальну авторизацію, фронтенд. Далі - переписати на спрінг
