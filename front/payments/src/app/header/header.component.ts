@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from "../User";
+import {User} from "../entities/User";
 import {HttpService} from "../http.service";
 
 @Component({
@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
 
   getUser(): void{
-    this.userService.getResponse().subscribe(response => this.user = response.user);
+    this.userService.getUser().subscribe(response => this.user = response);
   }
 
   ngOnInit() {

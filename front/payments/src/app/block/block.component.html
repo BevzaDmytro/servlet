@@ -7,7 +7,7 @@
       <select (change)="onCardChange($event.target.value)"  required>
         <!--<select >-->
         <option disabled>Select card:</option>
-        <option *ngFor="let card of user.cards"  value={{card.cardNum}} >Card: {{card.cardNum}}; Balance: {{card.account.balance}}</option>
+        <option *ngFor="let card of cards"  value={{card.cardNum}} >Card: {{card.cardNum}}; Balance: {{card.account.balance}}</option>
       </select>
 
     </label>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpService} from "../http.service";
-import {Payment} from "../payment";
+import {Payment} from "../entities/payment";
 
 @Component({
   selector: 'app-pay',
@@ -16,7 +16,7 @@ export class PayComponent implements OnInit {
   constructor(private userService : HttpService) { }
 
   public getCards(){
-    this.userService.getResponse().subscribe(response => this.cards = response.user.cards);
+    this.userService.getCards().subscribe(response => this.cards = response);
   }
   ngOnInit() {
     this.getCards();

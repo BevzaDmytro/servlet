@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import {User} from "./User";
+import {User} from "./entities/User";
 import {Observable, of} from "rxjs/index";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {Response} from "./response";
-import {Payment} from "./payment";
+import {Response} from "./entities/response";
+import {Payment} from "./entities/payment";
 import {Router} from "@angular/router";
+import {Card} from "./entities/card";
 
 @Injectable({
   providedIn: 'root',
@@ -32,11 +33,24 @@ export class HttpService {
     const myHeaders = new HttpHeaders().set('auth', localStorage.getItem('auth'));
     const params = new HttpParams().set('auth', localStorage.getItem('auth'));
     console.log(localStorage.getItem('auth'));
-    // return this.http.post<Response>(this.userUrl,myHeaders);
     return this.http.post<Response>(this.userUrl,params);
-    // console.log("Response: "+this.response());
-    // return this.response.user;
-    // return this.http.get<User>(this.userUrl);
+
+  }
+
+  getUser(): Observable<User> {
+    const myHeaders = new HttpHeaders().set('auth', localStorage.getItem('auth'));
+    const params = new HttpParams().set('auth', localStorage.getItem('auth'));
+    console.log(localStorage.getItem('auth'));
+    return this.http.post<User>(this.userUrl+"user",params);
+  }
+
+
+  getCards(): Observable<Card[]> {
+    const myHeaders = new HttpHeaders().set('auth', localStorage.getItem('auth'));
+    const params = new HttpParams().set('auth', localStorage.getItem('auth'));
+    console.log(localStorage.getItem('auth'));
+    // return this.http.post<Response>(this.userUrl,myHeaders);
+    return this.http.post<Card[]>(this.userUrl+"cards",params);
   }
 
   pay(payment: Payment): Observable<Response>{

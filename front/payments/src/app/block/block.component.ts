@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Payment} from "../payment";
+import {Payment} from "../entities/payment";
 import {HttpService} from "../http.service";
-import {User} from "../User";
+import {User} from "../entities/User";
 
 @Component({
   selector: 'app-block',
@@ -10,17 +10,17 @@ import {User} from "../User";
 })
 export class BlockComponent implements OnInit {
 
-  user : User;
+  cards;
   private cardNum:string;
   private message:string;
 
   constructor(private userService : HttpService) { }
 
-  getUser(): void{
-    this.userService.getResponse().subscribe(response => this.user = response.user);
+  getCards(): void{
+    this.userService.getCards().subscribe(response => this.cards = response);
   }
   ngOnInit() {
-    this.getUser();
+    this.getCards();
   }
 
   onCardChange(value: any) {
@@ -35,8 +35,6 @@ export class BlockComponent implements OnInit {
         error => console.log("ERROR")
       );
   }
-
-
 
   messageExist(){
     return this.message != null;

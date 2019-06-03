@@ -13,7 +13,7 @@ export class AdminComponent implements OnInit {
 
   constructor(private userService : HttpService) { }
 
-  // getUser(): void{
+  // getCards(): void{
   //   this.userService.getResponse().subscribe(response => this.user = response.user);
   // }
   ngOnInit() {

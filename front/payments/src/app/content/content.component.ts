@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from "../User";
+import {User} from "../entities/User";
 import {HttpService} from "../http.service";
 
 @Component({
@@ -14,7 +14,7 @@ export class ContentComponent implements OnInit {
   constructor(private userService : HttpService) { }
 
   getUser(): void{
-    this.userService.getResponse().subscribe(response => this.user = response.user);
+    this.userService.getUser().subscribe(response => this.user = response);
   }
   ngOnInit() {
     this.getUser();
