@@ -1,5 +1,6 @@
 package com.kpi.commands;
 
+import com.kpi.entities.Card;
 import com.kpi.entities.User;
 import com.kpi.model.UsersDao;
 import com.kpi.model.UsersOnlineDao;
@@ -18,13 +19,18 @@ public class BlockCommand extends BaseCommand {
     public BaseCommand execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String cardNum = req.getParameter("cardToBlock");
 
-        CardsService service = new CardsService();
-        service.block(cardNum);
-
         String token1 = req.getParameter("auth");
 
         UserService userService = new UserService();
         User user = userService.getAuthorizedUser(token1);
+        Card cardToBlock = userService.getCardByNum(cardNum, user);
+
+
+        CardsService service = new CardsService();
+//        service.block(cardNum);
+        service.block(cardToBlock);
+
+
 
         resp.setHeader("Access-Control-Allow-Origin", "*");
         resp.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");

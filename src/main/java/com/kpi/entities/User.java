@@ -10,6 +10,14 @@ public class User {
     private boolean isAdmin;
     private ArrayList<Card> cards;
 
+    public ArrayList<Card> getCards() {
+        return cards;
+    }
+
+    public void setCards(ArrayList<Card> cards) {
+        this.cards = cards;
+    }
+
     public User(int id, String name, String email, String password, boolean isAdmin, ArrayList<Card> cards) {
         this.id = id;
         this.name = name;

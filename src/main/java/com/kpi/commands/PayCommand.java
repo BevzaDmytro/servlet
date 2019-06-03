@@ -4,6 +4,7 @@ import com.kpi.entities.User;
 import com.kpi.model.UsersDao;
 import com.kpi.model.UsersOnlineDao;
 import com.kpi.services.PaymentsService;
+import com.kpi.services.UserService;
 import com.kpi.utils.JsonMakerUtil;
 
 import javax.servlet.ServletException;
@@ -17,14 +18,13 @@ public class PayCommand extends BaseCommand {
     @Override
     public BaseCommand execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
-        System.out.println("PAY WORKS");
         String token = req.getHeader("auth");
 
         String token1 = req.getParameter("auth");
-        int userId = UsersOnlineDao.getUserId(token1);
-
-        UsersDao usersDao = new UsersDao();
-        User user = usersDao.getById(userId);
+        UserService userService = new UserService();
+//        int userId = UsersOnlineDao.getUserId(token1);
+//        UsersDao usersDao = new UsersDao();
+        User user = userService.getAuthorizedUser(token1);
         String cardNumOwner = req.getParameter("senderCard");
         String cardNumRecip = req.getParameter("recipient");
         String amount = req.getParameter("amount");
@@ -45,8 +45,6 @@ public class PayCommand extends BaseCommand {
 
         out.print(jsonObject);
         out.flush();
-
-
         return null;
     }
 }

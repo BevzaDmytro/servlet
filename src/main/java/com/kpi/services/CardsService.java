@@ -18,4 +18,10 @@ public class CardsService {
         card.setBlocked(false);
         dao.updateCard(card);
     }
+
+    public void block(Card cardToBlock) {
+        CardsDao dao = new CardsDao();
+        cardToBlock.setBlocked(true);
+        dao.updateCard(cardToBlock);
+    }
 }
