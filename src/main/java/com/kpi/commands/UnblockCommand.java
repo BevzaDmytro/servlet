@@ -35,7 +35,7 @@ public class UnblockCommand extends BaseCommand {
         resp.setContentType("application/json");
 
         PrintWriter out = resp.getWriter();
-        String jsonObject = JsonMakerUtil.createResponseJson("1111",user, "Card is blocked");
+        String jsonObject = JsonMakerUtil.returnMessageGson("Card unblocked successful");
 
         out.print(jsonObject);
         out.flush();

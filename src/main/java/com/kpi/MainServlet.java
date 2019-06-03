@@ -32,7 +32,9 @@ public class MainServlet extends HttpServlet {
 
     public void init(){
         commands = new HashMap();
-        commands.put("/", new GetCardsCommand());
+        commands.put("/cards", new GetCardsCommand());
+        commands.put("/user", new GetUserDataInfo());
+        commands.put("/", new GetUserDataInfo());
         commands.put("/login", new LoginCommand());
         commands.put("/logout", new LogoutCommand());
         commands.put("/pay", new PayCommand());

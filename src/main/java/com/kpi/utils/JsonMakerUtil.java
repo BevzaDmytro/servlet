@@ -19,4 +19,8 @@ public class JsonMakerUtil {
     public static String userDataJson(User user){
         return "{ \"user\" : \""+new Gson().toJson(user)+"\"}";
     }
+
+    public static String returnTokenJson(String s) {
+        return "{ \"token\" : \""+s+"\"}";
+    }
 }

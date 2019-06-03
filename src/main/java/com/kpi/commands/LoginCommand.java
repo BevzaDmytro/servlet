@@ -39,7 +39,7 @@ public class LoginCommand extends BaseCommand {
 
 
         PrintWriter out = resp.getWriter();
-        String jsonObject = JsonMakerUtil.createResponseJson("1111",user, "msg");
+        String jsonObject = JsonMakerUtil.returnTokenJson("1111");
 
         out.print(jsonObject);
         out.flush();

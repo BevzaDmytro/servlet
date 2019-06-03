@@ -1,5 +1,6 @@
 package com.kpi.commands;
 
+import com.google.gson.Gson;
 import com.kpi.entities.Card;
 import com.kpi.entities.User;
 import com.kpi.model.UsersDao;
@@ -21,8 +22,8 @@ public class BlockCommand extends BaseCommand {
 
         String token1 = req.getParameter("auth");
 
-        UserService userService = new UserService();
-        User user = userService.getAuthorizedUser(token1);
+//        UserService userService = new UserService();
+//        User user = userService.getAuthorizedUser(token1);
 
         CardsService service = new CardsService();
         service.block(cardNum);
@@ -37,7 +38,7 @@ public class BlockCommand extends BaseCommand {
         resp.setContentType("application/json");
 
         PrintWriter out = resp.getWriter();
-        String jsonObject = JsonMakerUtil.createResponseJson("1111",user, "Card is blocked");
+        String jsonObject = JsonMakerUtil.returnMessageGson("Card is blocked");
 
         out.print(jsonObject);
         out.flush();

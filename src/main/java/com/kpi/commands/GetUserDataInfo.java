@@ -1,9 +1,8 @@
 package com.kpi.commands;
 
+import com.google.gson.Gson;
 import com.kpi.entities.User;
-import com.kpi.model.UsersDao;
 import com.kpi.model.UsersOnlineDao;
-import com.kpi.services.PaymentsService;
 import com.kpi.services.UserService;
 import com.kpi.utils.JsonMakerUtil;
 
@@ -12,24 +11,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Enumeration;
 
-public class PayCommand extends BaseCommand {
+public class GetUserDataInfo extends BaseCommand {
     @Override
     public BaseCommand execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
         String token = req.getHeader("auth");
-
         String token1 = req.getParameter("auth");
+
         UserService userService = new UserService();
-
-        User user = userService.getAuthorizedUser(token1);
-        String cardNumOwner = req.getParameter("senderCard");
-        String cardNumRecip = req.getParameter("recipient");
-        String amount = req.getParameter("amount");
-
-        PaymentsService service = new PaymentsService(cardNumOwner,cardNumRecip);
-        String result =  service.pay(amount);
+//        User user =  userService.getAuthorizedUser(token1);
+        User user =  userService.getAuthorizedUser("1111");
+        if(user == null) return null;
 
 
         resp.setHeader("Access-Control-Allow-Origin", "*");
@@ -40,11 +33,12 @@ public class PayCommand extends BaseCommand {
 
 
         PrintWriter out = resp.getWriter();
-//        String jsonObject = JsonMakerUtil.createResponseJson("1111",user, result);
-        String jsonObject = JsonMakerUtil.returnMessageGson(result);
+//        String jsonObject = JsonMakerUtil.createResponseJson("1111",user, "msg");
 
-        out.print(jsonObject);
+        out.print(new Gson().toJson(user));
         out.flush();
+
+
         return null;
     }
 }
