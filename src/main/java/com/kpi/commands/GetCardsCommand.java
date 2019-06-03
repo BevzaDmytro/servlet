@@ -1,8 +1,11 @@
 package com.kpi.commands;
 
+import com.google.gson.Gson;
+import com.kpi.entities.Card;
 import com.kpi.entities.User;
 import com.kpi.model.UsersDao;
 import com.kpi.model.UsersOnlineDao;
+import com.kpi.services.CardsService;
 import com.kpi.utils.JsonMakerUtil;
 
 import javax.servlet.ServletException;
@@ -18,12 +21,19 @@ public class GetCardsCommand extends BaseCommand {
         String token = req.getHeader("auth");
         String token1 = req.getParameter("auth");
 
-
         int userId = UsersOnlineDao.getUserId(token1);
 
-        UsersDao usersDao = new UsersDao();
-        User user = usersDao.getById(userId);
+        CardsService cardsService = new CardsService();
 
+
+//        UsersDao usersDao = new UsersDao();
+//        User user = usersDao.getById(userId);
+//
+//        int i=0;
+//        for (Card c: user.getCards() ) {
+//            System.out.println(i+" "+c.isBlocked());
+//            i++;
+//        }
         resp.setHeader("Access-Control-Allow-Origin", "*");
         resp.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");
         resp.setHeader("Access-Control-Allow-Headers", "x-auth-token, x-requested-with");
@@ -32,12 +42,11 @@ public class GetCardsCommand extends BaseCommand {
 
 
         PrintWriter out = resp.getWriter();
-        String jsonObject = JsonMakerUtil.createResponseJson("1111",user, "msg");
+//        String jsonObject = JsonMakerUtil.createResponseJson("1111",user, "msg");
 
-        out.print(jsonObject);
+        out.print(new Gson().toJson(cardsService.getCardsByOwnerId(userId)));
         out.flush();
 
-//        req.getRequestDispatcher(page).forward(req, resp);
         return null;
     }
 }

@@ -26,9 +26,11 @@ export class PayComponent implements OnInit {
     console.log(this.payment);
     this.userService.pay(payment)
       .subscribe(
-        response => {this.cards = response.user.cards; this.message = response.message},
+        response => { this.message = response.message; this.getCards();},
         error => console.log("ERROR")
       );
+
+
   }
 
 onChange(cardNum){

@@ -24,4 +24,9 @@ public class CardsService {
         cardToBlock.setBlocked(true);
         dao.updateCard(cardToBlock);
     }
+
+    public Iterable<Card> getCardsByOwnerId(int id){
+        CardsDao cardsDao = new CardsDao();
+        return cardsDao.getCardsByOwnerId(id);
+    }
 }

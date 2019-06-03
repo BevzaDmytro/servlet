@@ -23,12 +23,10 @@ public class BlockCommand extends BaseCommand {
 
         UserService userService = new UserService();
         User user = userService.getAuthorizedUser(token1);
-        Card cardToBlock = userService.getCardByNum(cardNum, user);
-
 
         CardsService service = new CardsService();
-//        service.block(cardNum);
-        service.block(cardToBlock);
+        service.block(cardNum);
+//        service.block(cardToBlock);
 
 
 

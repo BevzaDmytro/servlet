@@ -11,4 +11,12 @@ public class JsonMakerUtil {
         res = " { \"token\": \""+ token + "\"  , \"user\" : " + gson.toJson(user) + " , \"message\": \" " +message + " \" }";
         return res;
     }
+
+    public static String returnMessageGson(String msg){
+        return "{ \"message\" : \""+msg+"\"}";
+    }
+
+    public static String userDataJson(User user){
+        return "{ \"user\" : \""+new Gson().toJson(user)+"\"}";
+    }
 }

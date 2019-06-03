@@ -36,7 +36,9 @@ public class UsersDao implements Dao {
                  balance =  result.getFloat("balance");
                  cardId = result.getInt("card_id");
                  accountId = result.getInt("account_id");
-                 card =  new Card(cardId,cardNum,id, isBlocked, new Account(accountId,accountNum, balance));
+                 isBlocked = Boolean.parseBoolean(result.getString("is_blocked"));
+
+                card =  new Card(cardId,cardNum,id, isBlocked, new Account(accountId,accountNum, balance));
                 cards.add(card);
             }
 
