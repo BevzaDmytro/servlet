@@ -46,11 +46,21 @@ export class HttpService {
 
 
   getCards(): Observable<Card[]> {
-    const myHeaders = new HttpHeaders().set('auth', localStorage.getItem('auth'));
+    const myHeaders = new HttpHeaders().append('auth', localStorage.getItem('auth'));
+    // let headers = new Headers();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'auth': 'my-auth-token'
+      })
+    };
+    httpOptions.headers = httpOptions.headers.set('auth', localStorage.getItem('auth'));
+
     const params = new HttpParams().set('auth', localStorage.getItem('auth'));
     console.log(localStorage.getItem('auth'));
-    // return this.http.post<Response>(this.userUrl,myHeaders);
-    return this.http.post<Card[]>(this.userUrl+"cards",params);
+    console.log(httpOptions);
+    return this.http.post<Card[]>(this.userUrl+"cards",httpOptions);
+    // return this.http.post<Card[]>(this.userUrl+"cards",params);
   }
 
   pay(payment: Payment): Observable<Response>{

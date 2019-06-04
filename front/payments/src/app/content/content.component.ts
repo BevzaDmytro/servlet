@@ -14,7 +14,7 @@ export class ContentComponent implements OnInit {
   constructor(private userService : HttpService) { }
 
   getUser(): void{
-    this.userService.getUser().subscribe(response => this.user = response);
+    this.userService.getUser().subscribe(response => {console.log(response);this.user = response});
   }
   ngOnInit() {
     this.getUser();

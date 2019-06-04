@@ -20,29 +20,10 @@ public class GetCardsCommand extends BaseCommand {
 
         String token = req.getHeader("auth");
         String token1 = req.getParameter("auth");
-
         int userId = UsersOnlineDao.getUserId(token1);
 
         CardsService cardsService = new CardsService();
-
-
-//        UsersDao usersDao = new UsersDao();
-//        User user = usersDao.getById(userId);
-//
-//        int i=0;
-//        for (Card c: user.getCards() ) {
-//            System.out.println(i+" "+c.isBlocked());
-//            i++;
-//        }
-        resp.setHeader("Access-Control-Allow-Origin", "*");
-        resp.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");
-        resp.setHeader("Access-Control-Allow-Headers", "x-auth-token, x-requested-with");
-        resp.setHeader("Access-Control-Max-Age", "3600");
-        resp.setContentType("application/json");
-
-
         PrintWriter out = resp.getWriter();
-//        String jsonObject = JsonMakerUtil.createResponseJson("1111",user, "msg");
 
         out.print(new Gson().toJson(cardsService.getCardsByOwnerId(userId)));
         out.flush();

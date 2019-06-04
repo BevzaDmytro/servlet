@@ -26,14 +26,6 @@ public class UnblockCommand extends BaseCommand {
         CardsService service = new CardsService();
         service.unblock(cardNum);
 
-
-
-        resp.setHeader("Access-Control-Allow-Origin", "*");
-        resp.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");
-        resp.setHeader("Access-Control-Allow-Headers", "x-auth-token, x-requested-with");
-        resp.setHeader("Access-Control-Max-Age", "3600");
-        resp.setContentType("application/json");
-
         PrintWriter out = resp.getWriter();
         String jsonObject = JsonMakerUtil.returnMessageGson("Card unblocked successful");
 
