@@ -21,20 +21,20 @@ public class LoginCommand extends BaseCommand {
     public BaseCommand execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
         String email = req.getParameter("email");
-//        String email = "qwerty@gmail.com";
+
         String pw = req.getParameter("password");
-//        String pw = "12345";
+
 
         UserService userService = new UserService();
         User user =  userService.loginUser(email, pw);
         if(user == null) return null;
 
-        UsersOnlineDao.insertToken(user.getId(), "1111");
-
+        String token = userService.generateToken();
+        UsersOnlineDao.insertToken(user.getId(), token);
 
 
         PrintWriter out = resp.getWriter();
-        String jsonObject = JsonMakerUtil.returnTokenJson("1111");
+        String jsonObject = JsonMakerUtil.returnTokenJson(token);
 
         out.print(jsonObject);
         out.flush();

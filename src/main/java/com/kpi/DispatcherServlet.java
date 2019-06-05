@@ -15,7 +15,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @WebServlet("/")
-public class MainServlet extends HttpServlet {
+public class DispatcherServlet extends HttpServlet {
 
     private static final String COMMAND_REGEX = "^(?<command>/[a-z0-9]*)(\\?.{2,})?$";
     private Map<String, BaseCommand> commands;

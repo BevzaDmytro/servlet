@@ -34,4 +34,13 @@ public class UserService {
 
         return card;
     }
+
+    public String generateToken() {
+        String symbols = "qwertyasdhfgsdg";
+        StringBuilder randString = new StringBuilder();
+        int count = 10;
+        for(int i=0;i<count;i++)
+            randString.append(symbols.charAt((int)(Math.random()*symbols.length())));
+        return String.valueOf(randString);
+    }
 }

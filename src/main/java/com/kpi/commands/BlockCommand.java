@@ -23,12 +23,9 @@ public class BlockCommand extends BaseCommand {
         String token = req.getHeader("Authorization");
         if(token == null) return null;
 
-//        UserService userService = new UserService();
-//        User user = userService.getAuthorizedUser(token1);
 
         CardsService service = new CardsService();
         service.block(cardNum);
-//        service.block(cardToBlock);
 
         PrintWriter out = resp.getWriter();
         String jsonObject = JsonMakerUtil.returnMessageGson("Card is blocked");

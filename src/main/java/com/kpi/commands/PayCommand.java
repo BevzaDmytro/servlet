@@ -25,6 +25,7 @@ public class PayCommand extends BaseCommand {
         UserService userService = new UserService();
 
         User user = userService.getAuthorizedUser(token);
+        if(user ==  null) return null;
         String cardNumOwner = req.getParameter("senderCard");
         String cardNumRecip = req.getParameter("recipient");
         String amount = req.getParameter("amount");

@@ -19,11 +19,10 @@ public class UnblockCommand extends BaseCommand {
         String token = req.getHeader("Authorization");
         if(token == null) return null;
 
-        System.out.println("TOKEN: "+token);
         UserService userService = new UserService();
         User user = userService.getAuthorizedUser(token);
         if(!userService.checkIsAdmin(user)){
-            //return 500
+            return null;
         }
 
         CardsService service = new CardsService();
