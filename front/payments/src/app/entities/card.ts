@@ -4,5 +4,5 @@ export class Card {
   email:string;
   cardOwner:string;
   account;
-
+  blocked;
 }

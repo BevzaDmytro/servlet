@@ -11,7 +11,9 @@ public class LogoutCommand extends BaseCommand {
     @Override
     public BaseCommand execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String token1 = req.getParameter("auth");
-        UsersOnlineDao.deleteToken(token1);
+        String token = req.getHeader("Authorization");
+
+        UsersOnlineDao.deleteToken(token);
 
         return null;
     }

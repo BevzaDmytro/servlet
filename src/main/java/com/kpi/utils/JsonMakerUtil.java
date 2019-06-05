@@ -13,7 +13,8 @@ public class JsonMakerUtil {
     }
 
     public static String returnMessageGson(String msg){
-        return "{ \"message\" : \""+msg+"\"}";
+//        return "{ \"message\" : \""+msg+"\"}";
+        return "{ message : \""+msg+"\"}";
     }
 
     public static String userDataJson(User user){

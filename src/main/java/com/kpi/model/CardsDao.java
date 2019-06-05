@@ -31,7 +31,7 @@ public class CardsDao {
 
     public void updateCard(Card card){
         Connector connector = Connector.getInstance();
-        String query = "UPDATE cards SET is_blocked = '"+String.valueOf(card.isBlocked())+"' WHERE id="+card.getId();
+        String query = "UPDATE cards SET is_blocked = '"+(card.isBlocked() ? 1 : 0)+"' WHERE id="+card.getId();
         connector.executeSQL(query);
     }
 
@@ -45,7 +45,7 @@ public class CardsDao {
         try {
             result.next();
 
-            card = new Card(result.getInt("id"),result.getString("card_number"), result.getInt("card_owner_id"), Boolean.getBoolean(result.getString("is_blocked")), new Account(result.getInt("account_id"),result.getInt("account_number"), result.getFloat("balance") ));
+            card = new Card(result.getInt("id"),result.getString("card_number"), result.getInt("card_owner_id"), (result.getInt("is_blocked") == 1), new Account(result.getInt("account_id"),result.getInt("account_number"), result.getFloat("balance") ));
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -66,7 +66,7 @@ public class CardsDao {
             float balance =  result.getFloat("balance");
             int cardId = result.getInt("card_id");
             int accountId = result.getInt("account_id");
-            boolean isBlocked = Boolean.getBoolean(result.getString("is_blocked"));
+            boolean isBlocked = result.getInt("is_blocked") == 1;
             Card card =  new Card(cardId,cardNum,id, isBlocked, new Account(accountId,accountNum, balance));
             ((ArrayList<Card>) cards).add(card);
             }

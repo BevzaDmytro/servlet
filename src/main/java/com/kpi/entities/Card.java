@@ -5,14 +5,14 @@ public class Card {
     private String cardNum;
     private int cardOwner;
     private Account account;
-    private boolean isBlocked;
+    private boolean blocked;
 
-    public Card(int id, String cardNum, int cardOwner, boolean isBlocked, Account account) {
+    public Card(int id, String cardNum, int cardOwner, boolean blocked, Account account) {
         this.id = id;
         this.cardNum = cardNum;
         this.cardOwner = cardOwner;
         this.account = account;
-        this.isBlocked = isBlocked;
+        this.blocked = blocked;
     }
 
     public int getId() {
@@ -48,11 +48,11 @@ public class Card {
     }
 
     public boolean isBlocked() {
-        return isBlocked;
+        return blocked;
     }
 
     public void setBlocked(boolean blocked) {
-        isBlocked = blocked;
+        this.blocked = blocked;
     }
 
     public Card() {

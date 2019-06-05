@@ -11,13 +11,13 @@ import {Card} from "./entities/card";
   providedIn: 'root',
 })
 export class HttpService {
-
-  private  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-      'Authorization': 'my-auth-token'
-    })
-  };
+  //
+  // private  httpOptions = {
+  //   headers: new HttpHeaders({
+  //     'Content-Type':  'application/json',
+  //     'Authorization': 'my-auth-token'
+  //   })
+  // };
   private userUrl = 'http://localhost:8080/';
 
   login(email: string, password: string) {
@@ -38,53 +38,64 @@ export class HttpService {
   }
 
   getUser(): Observable<User> {
-    const myHeaders = new HttpHeaders().set('auth', localStorage.getItem('auth'));
+    let auth : string = localStorage.getItem('auth');
+    const headers = new HttpHeaders({ 'Authorization':  auth});
+    const options = { headers: headers };
     const params = new HttpParams().set('auth', localStorage.getItem('auth'));
     console.log(localStorage.getItem('auth'));
-    return this.http.post<User>(this.userUrl+"user",params);
+    return this.http.get<User>(this.userUrl+"user",options);
   }
 
 
   getCards(): Observable<Card[]> {
-    const myHeaders = new HttpHeaders().append('auth', localStorage.getItem('auth'));
-    // let headers = new Headers();
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'auth': 'my-auth-token'
-      })
-    };
-    httpOptions.headers = httpOptions.headers.set('auth', localStorage.getItem('auth'));
+    let auth : string = localStorage.getItem('auth');
+    const headers = new HttpHeaders({ 'Authorization':  auth});
+    const options = { headers: headers };
+    console.log(options);
 
-    const params = new HttpParams().set('auth', localStorage.getItem('auth'));
+    const params = new HttpParams();
     console.log(localStorage.getItem('auth'));
-    console.log(httpOptions);
-    return this.http.post<Card[]>(this.userUrl+"cards",httpOptions);
-    // return this.http.post<Card[]>(this.userUrl+"cards",params);
+    return this.http.get<Card[]>(this.userUrl+"cards", options);
+    // return this.http.post<Card[]>(this.userUrl+"cards",params, options);
   }
 
   pay(payment: Payment): Observable<Response>{
-    const myHeaders = new HttpHeaders().set('auth', localStorage.getItem('auth'));
-    const params = new HttpParams().set('senderCard', payment.senderCard).set('recipient',payment.recipientCard).set('amount',payment.amount).set('auth', localStorage.getItem('auth'));
+    let auth : string = localStorage.getItem('auth');
+    const headers = new HttpHeaders({ 'Authorization':  auth});
+    const options = { headers: headers };
+    console.log(options);
+    const params = new HttpParams().set('senderCard', payment.senderCard).set('recipient',payment.recipientCard).set('amount',payment.amount);
     // return this.http.post<Response>('http://localhost:8080/pay',{params: {payment}});
-    return this.http.post<Response>('http://localhost:8080/pay',  params);
+    return this.http.post<Response>('http://localhost:8080/pay',  params, options);
   }
 
   constructor(private http:HttpClient, private router:Router) { }
 
   logout() {
-    const params = new HttpParams().set('auth', localStorage.getItem('auth'));
+    const params = new HttpParams();
+    let auth : string = localStorage.getItem('auth');
+    const headers = new HttpHeaders({ 'Authorization':  auth});
+    const options = { headers: headers };
     localStorage.clear();
-    this.http.post(this.userUrl+'logout', params).subscribe();
+    this.http.post(this.userUrl+'logout', params, options).subscribe();
   }
 
   block(cardNum : string): Observable<Response>{
-    const params = new HttpParams().set('cardToBlock', cardNum).set('auth',localStorage.getItem('auth'));
-    return this.http.post<Response>(this.userUrl+'block', params);
+    const params = new HttpParams().set('cardToBlock', cardNum);
+    let auth : string = localStorage.getItem('auth');
+    const headers = new HttpHeaders({ 'Authorization':  auth});
+    const options = { headers: headers };
+    return this.http.post<Response>(this.userUrl+'block', params, options);
   }
 
   unblock(cardNum : string): Observable<Response>{
-    const params = new HttpParams().set('unblockCard', cardNum).set('auth',localStorage.getItem('auth'));
-    return this.http.post<Response>(this.userUrl+'unblock', params);
+
+    let auth : string = localStorage.getItem('auth');
+    const headers = new HttpHeaders({ 'Authorization':  auth});
+    const options = { headers: headers };
+    console.log(options);
+    // const params = new HttpParams();
+    const params = new HttpParams().set('unblockCard', cardNum);
+    return this.http.post<Response>(this.userUrl+'unblock', params, options);
   }
 }

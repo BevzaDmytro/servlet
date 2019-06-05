@@ -16,9 +16,12 @@ public class UnblockCommand extends BaseCommand {
     public BaseCommand execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String cardNum = req.getParameter("unblockCard");
         String token1 = req.getParameter("auth");
+        String token = req.getHeader("Authorization");
+        if(token == null) return null;
 
+        System.out.println("TOKEN: "+token);
         UserService userService = new UserService();
-        User user = userService.getAuthorizedUser(token1);
+        User user = userService.getAuthorizedUser(token);
         if(!userService.checkIsAdmin(user)){
             //return 500
         }

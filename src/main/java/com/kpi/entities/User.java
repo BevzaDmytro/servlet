@@ -7,7 +7,7 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private boolean isAdmin;
+    private boolean admin;
     private ArrayList<Card> cards;
 
     public ArrayList<Card> getCards() {
@@ -18,12 +18,12 @@ public class User {
         this.cards = cards;
     }
 
-    public User(int id, String name, String email, String password, boolean isAdmin, ArrayList<Card> cards) {
+    public User(int id, String name, String email, String password, boolean admin, ArrayList<Card> cards) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.isAdmin = isAdmin;
+        this.admin = admin;
         this.cards = cards;
     }
 
@@ -60,10 +60,10 @@ public class User {
     }
 
     public boolean isAdmin() {
-        return isAdmin;
+        return admin;
     }
 
     public void setAdmin(boolean admin) {
-        isAdmin = admin;
+        this.admin = admin;
     }
 }

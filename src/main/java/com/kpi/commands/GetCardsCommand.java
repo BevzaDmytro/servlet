@@ -18,9 +18,10 @@ public class GetCardsCommand extends BaseCommand {
     @Override
     public BaseCommand execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
-        String token = req.getHeader("auth");
+        String token = req.getHeader("Authorization");
+//        System.out.println(token);
         String token1 = req.getParameter("auth");
-        int userId = UsersOnlineDao.getUserId(token1);
+        int userId = UsersOnlineDao.getUserId(token);
 
         CardsService cardsService = new CardsService();
         PrintWriter out = resp.getWriter();

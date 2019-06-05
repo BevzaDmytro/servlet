@@ -18,12 +18,13 @@ public class PayCommand extends BaseCommand {
     @Override
     public BaseCommand execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
-        String token = req.getHeader("auth");
+        String token = req.getHeader("Authorization");
+        if(token == null) return null;
 
         String token1 = req.getParameter("auth");
         UserService userService = new UserService();
 
-        User user = userService.getAuthorizedUser(token1);
+        User user = userService.getAuthorizedUser(token);
         String cardNumOwner = req.getParameter("senderCard");
         String cardNumRecip = req.getParameter("recipient");
         String amount = req.getParameter("amount");

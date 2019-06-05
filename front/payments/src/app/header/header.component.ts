@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
   }
 
   isUserAdmin() {
-    console.log(this.user.isAdmin);
-    return this.user.isAdmin == true;
+    console.log(this.user.admin);
+    return this.user.admin == true;
   }
 }

@@ -14,11 +14,11 @@ public class GetUserDataInfo extends BaseCommand {
     @Override
     public BaseCommand execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
-        String token = req.getHeader("auth");
+        String token = req.getHeader("Authorization");
         String token1 = req.getParameter("auth");
-        if(token1 == null) return null;
+        if(token == null) return null;
         UserService userService = new UserService();
-        User user =  userService.getAuthorizedUser(token1);
+        User user =  userService.getAuthorizedUser(token);
         System.out.println(user.getName());
         if(user == null) return null;
 

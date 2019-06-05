@@ -25,7 +25,7 @@ public class UsersDao implements Dao {
             float balance =  result.getFloat("balance");
             int cardId = result.getInt("card_id");
             int accountId = result.getInt("account_id");
-            boolean isBlocked = Boolean.parseBoolean(result.getString("is_blocked"));
+            boolean isBlocked = result.getInt("is_blocked") == 1;
             Card card =  new Card(cardId,cardNum,id, isBlocked, new Account(accountId,accountNum, balance));
             ArrayList<Card> cards = new ArrayList<>();
             cards.add(card);
@@ -36,7 +36,7 @@ public class UsersDao implements Dao {
                  balance =  result.getFloat("balance");
                  cardId = result.getInt("card_id");
                  accountId = result.getInt("account_id");
-                 isBlocked = Boolean.parseBoolean(result.getString("is_blocked"));
+                isBlocked = result.getInt("is_blocked") == 1;
 
                 card =  new Card(cardId,cardNum,id, isBlocked, new Account(accountId,accountNum, balance));
                 cards.add(card);
@@ -68,7 +68,7 @@ public class UsersDao implements Dao {
             float balance =  result.getFloat("balance");
             int cardId = result.getInt("card_id");
             int accountId = result.getInt("account_id");
-            boolean isBlocked = Boolean.getBoolean(result.getString("is_blocked"));
+            boolean isBlocked = result.getInt("is_blocked") == 1;
             Card card =  new Card(cardId,cardNum,id, isBlocked, new Account(accountId,accountNum, balance));
             ArrayList<Card> cards = new ArrayList<>();
             cards.add(card);
@@ -79,6 +79,7 @@ public class UsersDao implements Dao {
                 balance =  result.getFloat("balance");
                 cardId = result.getInt("card_id");
                 accountId = result.getInt("account_id");
+                isBlocked = result.getInt("is_blocked") == 1;
                 card =  new Card(cardId,cardNum,id, isBlocked, new Account(accountId,accountNum, balance));
                 cards.add(card);
             }
